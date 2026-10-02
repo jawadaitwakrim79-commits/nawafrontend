@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #FBF7F2;
+  --color-ivory: #F3EDE4;
+  --color-sand: #E7D9CC;
+  --color-ink: #1C1612;
+  --color-muted: #8A7568;
+  --color-brand: #8C4A32;
+  --color-brand-deep: #5C3424;
+  --color-on-brand: #F3EDE4;
+  --color-twilight: #243044;
+  --color-line: #E4D8CC;
+
+  --font-serif: var(--font-amiri), serif;
+  --font-sans: var(--font-ibm-plex), "IBM Plex Sans Arabic", sans-serif;
+  --font-display: var(--font-outfit), "Outfit", sans-serif;
+
+  --radius-card: 20px;
+  --radius-btn: 999px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: theme(--color-paper);
+  color: theme(--color-ink);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.7;
+  text-align: start;
+  margin: 0;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.25;
+  font-weight: 700;
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+h3 {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+/* Focus rings */
+:focus-visible {
+  outline: 2px solid theme(--color-brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Scrollbar color */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: theme(--color-ivory);
+}
+::-webkit-scrollbar-thumb {
+  background: theme(--color-sand);
+  border-radius: 99px;
+}
+
+/* Announcement bar ticker */
+@keyframes ticker-slide {
+  0%, 30%    { transform: translateY(0); opacity: 1; }
+  33%, 63%   { transform: translateY(-100%); opacity: 0; }
+  66%, 96%   { transform: translateY(-200%); opacity: 0; }
+  99%, 100%  { transform: translateY(0); opacity: 1; }
+}
+
+/* Stars */
+.stars {
+  color: theme(--color-brand);
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+
+/* Utility: media-copy band */
+.band {
+  display: grid;
+  gap: 24px;
+}
+.band .copy { grid-area: copy; }
+.band .media { grid-area: media; }
+.band {
+  grid-template-areas:
+    "media"
+    "copy";
+}
+@media (min-width: 1024px) {
+  .band {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "media copy";
+    gap: 48px;
+  }
+  .band.flip {
+    grid-template-areas: "copy media";
+  }
+}
+
+/* No transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
